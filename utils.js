@@ -13,8 +13,6 @@ const getData = () => {
 	return newData;
 };
 
-console.log(getData());
-
 module.exports = {
 	getData,
 };

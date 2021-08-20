@@ -16,22 +16,25 @@ app.get('/', (req, res) => {
 });
 
 app.get('/all', (req, res) => {
+	console.log('request /all');
 	return res.status(200).send(getData());
 });
 
 app.get('/get/:id', (req, res) => {
 	const { id } = req.params;
-	console.log(id);
-	globalData.forEach(val => {
+	console.log(`request to /get/${id}`);
+
+	for (let val of globalData) {
 		if (val.id === Number(id)) return res.status(200).send(val);
-	});
+	}
 
 	return res.status(404).send({});
 });
 
 app.get('/category', (req, res) => {
 	const { type } = req.body;
-	console.log(type);
+	console.log(`request to /category with body ${req.body}`);
+
 	let catData = globalData.filter(val => {
 		return val.category === type;
 	});
